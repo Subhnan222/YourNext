@@ -97,13 +97,13 @@
 
     .land-logo {
       font-family: 'Sora', sans-serif;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 700;
       color: #111;
       margin-bottom: 80px;
       letter-spacing: -0.3px;
       opacity: 0;
-      animation: riseUp .6s ease forwards .1s;
+      animation: riseUp .6s ease forwards .1s, floatGlow 4s ease-in-out infinite 1s;
     }
 
     .land-logo b {
@@ -434,7 +434,7 @@
       display: none;
       flex-direction: column;
       align-items: center;
-      padding: 60px 24px 100px;
+      padding: 100px 24px 100px;
     }
 
     #s-res.active {
@@ -572,7 +572,7 @@
 
     .complete-btn {
       width: 100%;
-      background: #2563eb;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
       color: #fff;
       border: none;
       padding: 18px;
@@ -581,13 +581,14 @@
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
-      transition: background .2s, transform .2s;
+      transition: all .3s ease;
       box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
     }
 
     .complete-btn:hover {
-      background: #1d4ed8;
       transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
     }
 
     .roadmap-preview {
@@ -659,6 +660,7 @@
     .finished-icon {
       font-size: 48px;
       margin-bottom: 24px;
+      animation: popSuccess 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 
     .finished-title {
@@ -767,6 +769,84 @@
       transform: translateY(-2px);
       color: #111;
       box-shadow: 0 6px 16px rgba(0,0,0,.08);
+    }
+
+    /* NEW BRANDING CSS */
+    @keyframes floatGlow {
+      0%, 100% {
+        transform: translateY(0);
+        text-shadow: 0 4px 12px rgba(37,99,235,0);
+      }
+      50% {
+        transform: translateY(-2px);
+        text-shadow: 0 8px 24px rgba(37,99,235,0.3);
+      }
+    }
+
+    @keyframes popSuccess {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .logo-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .logo-brand svg {
+      width: 20px;
+      height: 20px;
+      color: #2563eb;
+    }
+    .ob-logo-sm.logo-brand svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .res-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      background: rgba(249, 248, 246, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      z-index: 40;
+    }
+
+    .nav-logo {
+      font-family: 'Sora', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #111;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .nav-logo:hover {
+      opacity: 0.8;
+    }
+    .nav-logo svg {
+      width: 18px;
+      height: 18px;
+      color: #2563eb;
+    }
+    .nav-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #888;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
   </style>
