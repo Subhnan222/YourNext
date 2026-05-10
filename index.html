@@ -1744,7 +1744,8 @@
       <div class="land-logo">Your<b>Next</b></div>
       <p class="land-tag">Smart guidance for overwhelmed tech students</p>
       <h1 class="land-h1">Stop guessing.<br>Find your <i>next</i> step.</h1>
-      <p class="land-sub">Not another course platform. YourNext removes decision fatigue and gives you one clear direction for where you are right now.</p>
+      <p class="land-sub">Not another course platform. YourNext removes decision fatigue and gives you one clear
+        direction for where you are right now.</p>
       <div class="cta-outer">
         <button class="cta" onclick="goOb()">
           <div class="cta-fill"></div>
@@ -1777,7 +1778,8 @@
       <div class="res-logo-top">Your<b>Next</b></div>
       <div class="res-tag">Your confusion-free path is ready</div>
       <h2 class="res-h" id="resH">Your path: <span id="resField">Web Development</span></h2>
-      <p class="res-sub-top">Personalised for your interests and current stage. Built to tell you what to learn next, what to ignore, and what to do today.</p>
+      <p class="res-sub-top">Personalised for your interests and current stage. Built to tell you what to learn next,
+        what to ignore, and what to do today.</p>
     </div>
 
     <div class="res-scroll" id="resBody"></div>
@@ -1790,7 +1792,8 @@
         <button class="feedback-close" onclick="closeFeedbackForm()" aria-label="Close feedback">×</button>
       </div>
       <iframe class="feedback-frame" id="feedbackFrame" title="YourNext feedback form"></iframe>
-      <div class="feedback-fallback">If the form does not load, <a id="feedbackOpenLink" href="#" target="_blank" rel="noopener noreferrer">open it in a new tab</a>.</div>
+      <div class="feedback-fallback">If the form does not load, <a id="feedbackOpenLink" href="#" target="_blank"
+          rel="noopener noreferrer">open it in a new tab</a>.</div>
     </div>
   </div>
 
@@ -2258,19 +2261,19 @@
       if (data.resources) {
         data.resources.forEach((_, i) => animateIn('res-' + i, 650 + i * 100));
       }
-      
+
       animateIn('panel-task', 850);
       animateIn('card-task', 1000);
       animateIn('panel-feedback', 1080);
       animateIn('card-feedback', 1120);
       animateIn('panel-do', 1250);
       data.dos.forEach((_, i) => animateIn('do-' + i, 1400 + i * 100));
-      
+
       let projectDelay = 1400 + data.dos.length * 100 + 100;
       animateIn('panel-projects', projectDelay);
       animateIn('panel-dont', projectDelay + 200);
       data.donts.forEach((_, i) => animateIn('dont-' + i, projectDelay + 350 + i * 90));
-      
+
       const sideBase = 700;
       animateIn('card-proof', sideBase);
       animateIn('card-confuse', sideBase + 150);
