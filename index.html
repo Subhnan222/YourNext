@@ -871,101 +871,126 @@
     let activePlan = null;
     let currentRoadmapIndex = 0;
 
+    function getTotalSteps(answers) {
+      const interest = answers[2]?.val;
+      if (!interest) return 7; // fallback total
+      // Paths with 3 dynamic questions -> Total 7 steps (0, 1, 2, 3, 4, 5, 6(final))
+      if (['ai', 'web', 'mobile', 'freelance'].includes(interest)) {
+        return 7;
+      }
+      // Paths with 2 dynamic questions -> Total 6 steps (0, 1, 2, 3, 4, 5(final))
+      if (['data', 'cyber', 'uni'].includes(interest)) {
+        return 6;
+      }
+      return 7;
+    }
+
     function getNextQuestion(answers, currentStep) {
+      // ─── STATIC CORE QUESTIONS ───
       if (currentStep === 0) {
         return {
-          id: 'q1',
+          id: 'q_stuck',
           eye: "Let's fix this",
-          title: "Feeling lost in tech?",
-          hint: "Tell us where you are right now.",
+          title: "Where are you stuck right now?",
+          hint: "Identify emotional state and main struggle.",
           opts: [
-            { e: "😵", l: "Completely confused", val: "confused" },
-            { e: "🔰", l: "Know basics but stuck", val: "stuck" },
-            { e: "🔄", l: "Already learning", val: "learning" },
-            { e: "🎓", l: "BS student", val: "student" },
-            { e: "💸", l: "Want to earn online", val: "earn" }
+            { e: "🤷", l: "I don't know where to start", val: "no_start" },
+            { e: "😵", l: "I started learning but feel lost", val: "lost" },
+            { e: "📉", l: "I am learning but not improving", val: "not_improving" },
+            { e: "🎓", l: "I'm following university but still confused", val: "uni_confused" },
+            { e: "💸", l: "I want to start earning online", val: "earning" }
           ]
         };
       }
 
       if (currentStep === 1) {
         return {
-          id: 'interest',
-          eye: "Your interest",
-          title: "What area interests you the most?",
-          hint: "Pick one main direction.",
+          id: 'q_why_stuck',
+          eye: "Root Problem",
+          title: "What causes your confusion the most?",
+          hint: "Let's find the exact reason.",
           opts: [
-            { e: "🌐", l: "Web & App Development", val: "web" },
-            { e: "🤖", l: "AI & Machine Learning", val: "ai" }
+            { e: "🗺️", l: "Too many skills and roadmaps", val: "too_many" },
+            { e: "📺", l: "Tutorials confuse me", val: "tutorials" },
+            { e: "🎯", l: "I don't know what to practice", val: "no_practice" },
+            { e: "🧠", l: "I learn but forget everything", val: "forget" },
+            { e: "❓", l: "I don't know what matters", val: "what_matters" }
           ]
         };
       }
 
-      const interest = answers[1]?.val;
+      if (currentStep === 2) {
+        return {
+          id: 'q_interest',
+          eye: "Your Direction",
+          title: "What feels most interesting to you?",
+          hint: "Choose a path to focus on.",
+          opts: [
+            { e: "🌐", l: "Web & App Development", val: "web" },
+            { e: "🤖", l: "AI & Machine Learning", val: "ai" },
+            { e: "📊", l: "Data Science", val: "data" },
+            { e: "🔒", l: "Cyber Security", val: "cyber" },
+            { e: "📱", l: "Mobile App Development", val: "mobile" },
+            { e: "💼", l: "Freelancing & Online Earning", val: "freelance" },
+            { e: "🏫", l: "University CS Subjects", val: "uni" }
+          ]
+        };
+      }
+
+      const interest = answers[2]?.val;
+      
+      // ─── DYNAMIC PATHS ───
 
       if (interest === 'ai') {
-        if (currentStep === 2) {
-          return {
-            id: 'ai_code',
-            eye: "AI Path",
-            title: "What is your coding experience?",
-            hint: "This helps us pick your starting point.",
-            opts: [
-              { e: "🌱", l: "None", val: "none" },
-              { e: "🐍", l: "Some Python", val: "python" },
-              { e: "💻", l: "Know other languages", val: "other" }
-            ]
-          };
-        }
-        if (currentStep === 3) {
-          return {
-            id: 'ai_math',
-            eye: "AI Path",
-            title: "How comfortable are you with Math?",
-            hint: "AI uses a lot of math.",
-            opts: [
-              { e: "😰", l: "I hate it", val: "hate" },
-              { e: "😐", l: "It's okay", val: "okay" },
-              { e: "🤓", l: "I love it", val: "love" }
-            ]
-          };
-        }
-        if (currentStep === 4) {
-          return null;
-        }
+        if (currentStep === 3) return { id: 'ai_why', eye: "AI Path", title: "Why are you interested in AI?", hint: "What is your main motivation?", opts: [{e: "🚀", l:"I want to build future tech", val:"future"}, {e:"💼", l:"High salary & job stability", val:"salary"}, {e:"🧠", l:"I find the concept fascinating", val:"fascinating"}] };
+        if (currentStep === 4) return { id: 'ai_math', eye: "AI Path", title: "How comfortable are you with Math?", hint: "Be honest. It helps us find your starting point.", opts: [{e: "😰", l:"I struggle with it", val:"hate"}, {e:"😐", l:"I can manage it", val:"okay"}, {e:"🤓", l:"I am very comfortable", val:"love"}] };
+        if (currentStep === 5) return { id: 'ai_pref', eye: "AI Path", title: "Do you prefer practical projects or deep theory?", hint: "How do you learn best?", opts: [{e: "🛠️", l:"Building things right away", val:"practical"}, {e:"📚", l:"Understanding how it works first", val:"theory"}] };
+      } 
+      
+      else if (interest === 'web' || interest === 'mobile') {
+        if (currentStep === 3) return { id: 'web_goal', eye: "Dev Path", title: "What is your end goal?", hint: "We want to give you the right roadmap.", opts: [{e: "💼", l:"Getting a full-time job", val:"job"}, {e:"💸", l:"Freelancing and finding clients", val:"freelance"}, {e:"🚀", l:"Building my own startup/apps", val:"startup"}] };
+        if (currentStep === 4) return { id: 'web_frust', eye: "Dev Path", title: "What frustrates you most in development?", hint: "We can help you bypass the hard parts.", opts: [{e: "🎨", l:"Making things look good (CSS/Design)", val:"css"}, {e:"⚙️", l:"Writing logic and algorithms (JS)", val:"js"}, {e:"🔗", l:"Connecting everything (Backend)", val:"backend"}, {e:"🔰", l:"I haven't started building yet", val:"none"}] };
+        if (currentStep === 5) return { id: 'web_type', eye: "Dev Path", title: "What do you want to build first?", hint: "Focus on one area before expanding.", opts: [{e: "🖥️", l:"Beautiful user interfaces (Frontend)", val:"frontend"}, {e:"🏗️", l:"Full-stack working applications", val:"fullstack"}] };
+      } 
+      
+      else if (interest === 'freelance') {
+        if (currentStep === 3) return { id: 'free_time', eye: "Freelance", title: "Are you looking for fast earning or a long-term career?", hint: "This changes what skills you should learn.", opts: [{e: "⚡", l:"I need income fast", val:"fast"}, {e:"🌱", l:"I want to build a sustainable career", val:"long"}] };
+        if (currentStep === 4) return { id: 'free_skill', eye: "Freelance", title: "What marketable skill do you already have?", hint: "Don't worry if the answer is none.", opts: [{e: "🎨", l:"Design / Video Editing", val:"design"}, {e:"💻", l:"Coding / Tech skills", val:"coding"}, {e:"✍️", l:"Writing / Marketing", val:"writing"}, {e:"🤷", l:"I am starting from zero", val:"nothing"}] };
+        if (currentStep === 5) return { id: 'free_pref', eye: "Freelance", title: "Do you prefer talking to clients or working alone?", hint: "Helps us suggest the right platform.", opts: [{e: "🤝", l:"I can negotiate and talk to clients", val:"clients"}, {e:"📹", l:"I prefer working quietly", val:"quiet"}] };
+      } 
+      
+      else if (interest === 'cyber') {
+        if (currentStep === 3) return { id: 'cyber_int', eye: "Cyber Security", title: "What part of security interests you?", hint: "Helps us narrow down the concepts.", opts: [{e: "🕵️", l:"Ethical Hacking (Offense)", val:"offense"}, {e:"🛡️", l:"Protecting Systems (Defense)", val:"defense"}, {e:"🤷", l:"I just think it's cool", val:"curious"}] };
+        if (currentStep === 4) return { id: 'cyber_net', eye: "Cyber Security", title: "How well do you understand networking?", hint: "Computers talking to each other.", opts: [{e: "🌐", l:"I know IP, TCP/UDP, DNS", val:"good"}, {e:"🔌", l:"I know what a router is", val:"basic"}, {e:"🤷", l:"Completely lost", val:"none"}] };
       }
 
-      if (interest === 'web' || !interest) {
-        if (currentStep === 2) {
-          return {
-            id: 'web_goal',
-            eye: "Web Path",
-            title: "What is your main goal?",
-            hint: "Why are you learning web dev?",
-            opts: [
-              { e: "💸", l: "Freelancing", val: "freelance" },
-              { e: "🏢", l: "Get a Job", val: "job" },
-              { e: "🚀", l: "Build a Startup", val: "startup" }
-            ]
-          };
-        }
-        if (currentStep === 3) {
-          return {
-            id: 'web_pref',
-            eye: "Web Path",
-            title: "Frontend or Backend?",
-            hint: "What sounds more fun?",
-            opts: [
-              { e: "🎨", l: "Frontend (Design & UI)", val: "front" },
-              { e: "⚙️", l: "Backend (Logic & DB)", val: "back" },
-              { e: "🤷", l: "Not sure", val: "unsure" }
-            ]
-          };
-        }
-        if (currentStep === 4) {
-          return null;
-        }
+      else if (interest === 'data') {
+        if (currentStep === 3) return { id: 'data_int', eye: "Data Science", title: "What is your main interest in Data?", hint: "There are many paths within Data.", opts: [{e: "📊", l:"Finding patterns & Analytics", val:"analytics"}, {e:"🤖", l:"Machine Learning models", val:"ml"}, {e:"📈", l:"Visualizing data nicely", val:"viz"}] };
+        if (currentStep === 4) return { id: 'data_math', eye: "Data Science", title: "How is your math and statistics background?", hint: "It determines your starting difficulty.", opts: [{e: "🤓", l:"Strong (Calculus, Stats)", val:"strong"}, {e:"😐", l:"Okay, but need a refresher", val:"okay"}, {e:"😰", l:"Very weak", val:"weak"}] };
       }
+
+      else if (interest === 'uni') {
+        if (currentStep === 3) return { id: 'uni_struggle', eye: "University", title: "What is your biggest semester struggle?", hint: "We've all been there.", opts: [{e: "🤯", l:"Too much theory, too fast", val:"theory"}, {e:"💻", l:"I fail at coding assignments", val:"coding"}, {e:"😴", l:"I lack motivation and focus", val:"motivation"}] };
+        if (currentStep === 4) return { id: 'uni_prog', eye: "University", title: "How confident are you in programming concepts?", hint: "Loops, arrays, OOP, etc.", opts: [{e: "💪", l:"I can code, just need direction", val:"good"}, {e:"🤷", l:"I understand but can't write code", val:"read_only"}, {e:"💀", l:"I don't understand it at all", val:"bad"}] };
+      }
+
+      // ─── FINAL QUESTION ───
+      const totalSteps = getTotalSteps(answers);
+      if (currentStep === totalSteps - 1) {
+        return {
+          id: 'final_guide',
+          eye: "Final Step",
+          title: "How do you want YourNext to guide you?",
+          hint: "Customize your roadmap style.",
+          opts: [
+            { e: "⚡", l: "Fast and practical", val: "fast" },
+            { e: "🛤️", l: "Step-by-step with no confusion", val: "step" },
+            { e: "🏢", l: "Job-focused", val: "job" },
+            { e: "💸", l: "Freelancing-focused", val: "freelance" }
+          ]
+        };
+      }
+
       return null;
     }
 
@@ -987,7 +1012,7 @@
         return;
       }
       
-      const maxSteps = 4; // Approx total steps
+      const maxSteps = getTotalSteps(ans);
       const pct = ((i + 1) / maxSteps) * 100;
       document.getElementById('obFill').style.width = pct + '%';
       document.getElementById('obCount').textContent = (i + 1) + ' of ' + maxSteps;
@@ -1033,7 +1058,7 @@
     }
 
     function generateRoadmapData(answers) {
-      const interest = answers[1]?.val || 'web';
+      const interest = answers[2]?.val || 'web'; // read from Step 2
       
       if (interest === 'ai') {
         return {
@@ -1065,7 +1090,7 @@
             }
           ]
         };
-      } else {
+      } else if (interest === 'web') {
         return {
           field: "Web Development",
           steps: [
@@ -1095,7 +1120,172 @@
             }
           ]
         };
+      } else if (interest === 'mobile') {
+        return {
+          field: "Mobile App Development",
+          steps: [
+            {
+              name: "Understand App Logic",
+              why: "Before writing apps, you need to understand how screens connect.",
+              time: "⏱️ 45 mins",
+              resourceTitle: "UI/UX Basics",
+              resourceUrl: "https://www.interaction-design.org/literature/topics/ui-design",
+              task: "Sketch a 3-screen app on a piece of paper."
+            },
+            {
+              name: "Pick Your Framework",
+              why: "You need to choose between React Native, Flutter, or native (Swift/Kotlin).",
+              time: "⏱️ 30 mins",
+              resourceTitle: "Flutter vs React Native",
+              resourceUrl: "https://www.freecodecamp.org/news/react-native-vs-flutter/",
+              task: "Read the article and pick one framework to stick with."
+            },
+            {
+              name: "Build a Hello World App",
+              why: "Getting the first app running is the hardest part.",
+              time: "⏱️ 2 hours",
+              resourceTitle: "React Native Docs",
+              resourceUrl: "https://reactnative.dev/docs/getting-started",
+              task: "Set up the environment and run 'Hello World' on your phone."
+            }
+          ]
+        };
+      } else if (interest === 'cyber') {
+        return {
+          field: "Cyber Security",
+          steps: [
+            {
+              name: "Networking Fundamentals",
+              why: "You cannot hack or protect a network if you don't understand how it works.",
+              time: "⏱️ 1 hour",
+              resourceTitle: "Network Basics (TryHackMe)",
+              resourceUrl: "https://tryhackme.com/room/networkservices",
+              task: "Learn what an IP address and a Port are."
+            },
+            {
+              name: "Linux Basics",
+              why: "Most security tools run on Linux. You need to be comfortable in the terminal.",
+              time: "⏱️ 1 hour",
+              resourceTitle: "Linux Journey",
+              resourceUrl: "https://linuxjourney.com/",
+              task: "Learn how to navigate folders using 'cd' and 'ls'."
+            },
+            {
+              name: "Your First Lab",
+              why: "Practice is the only way to learn security.",
+              time: "⏱️ 2 hours",
+              resourceTitle: "TryHackMe Pre-Security",
+              resourceUrl: "https://tryhackme.com/path/outline/presecurity",
+              task: "Complete the first room on TryHackMe."
+            }
+          ]
+        };
+      } else if (interest === 'data') {
+        return {
+          field: "Data Science",
+          steps: [
+            {
+              name: "Learn Python Basics",
+              why: "Python is the primary tool for manipulating data.",
+              time: "⏱️ 1 hour",
+              resourceTitle: "Kaggle Python Course",
+              resourceUrl: "https://www.kaggle.com/learn/python",
+              task: "Write a script that creates a simple list of numbers."
+            },
+            {
+              name: "Understand Spreadsheets",
+              why: "Before using complex code, understand data in Excel or Google Sheets.",
+              time: "⏱️ 45 mins",
+              resourceTitle: "Google Data Analytics",
+              resourceUrl: "https://grow.google/certificates/data-analytics/",
+              task: "Create a basic chart using a sample dataset."
+            },
+            {
+              name: "Intro to Pandas",
+              why: "Pandas is how Python reads and modifies large datasets.",
+              time: "⏱️ 1.5 hours",
+              resourceTitle: "Kaggle Pandas Course",
+              resourceUrl: "https://www.kaggle.com/learn/pandas",
+              task: "Load a CSV file using Pandas."
+            }
+          ]
+        };
+      } else if (interest === 'freelance') {
+        return {
+          field: "Freelancing & Earning",
+          steps: [
+            {
+              name: "Identify Your Offering",
+              why: "You need one clear service to sell, not ten random ones.",
+              time: "⏱️ 30 mins",
+              resourceTitle: "Finding Your Niche",
+              resourceUrl: "https://www.upwork.com/resources/how-to-find-your-niche",
+              task: "Write down 3 things you can do better than the average person."
+            },
+            {
+              name: "Set Up Your Profile",
+              why: "Your profile is your storefront.",
+              time: "⏱️ 1 hour",
+              resourceTitle: "Upwork Profile Guide",
+              resourceUrl: "https://www.upwork.com/resources/how-to-create-a-profile-that-stands-out",
+              task: "Create an Upwork profile and fill in the bio."
+            },
+            {
+              name: "Send Your First Proposal",
+              why: "You won't get hired if you don't apply.",
+              time: "⏱️ 45 mins",
+              resourceTitle: "Writing Winning Proposals",
+              resourceUrl: "https://www.upwork.com/resources/how-to-write-a-cover-letter",
+              task: "Find one easy job and send a customized proposal."
+            }
+          ]
+        };
+      } else if (interest === 'uni') {
+        return {
+          field: "University CS Support",
+          steps: [
+            {
+              name: "Master the Fundamentals",
+              why: "University moves fast. If you don't understand variables and loops, everything else will be confusing.",
+              time: "⏱️ 1 hour",
+              resourceTitle: "CS50 Introduction",
+              resourceUrl: "https://cs50.harvard.edu/x/",
+              task: "Watch the first 30 minutes of CS50 week 0."
+            },
+            {
+              name: "Learn to Read Errors",
+              why: "You will spend 80% of your time debugging. Learn to read red text.",
+              time: "⏱️ 30 mins",
+              resourceTitle: "How to Debug",
+              resourceUrl: "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_went_wrong",
+              task: "Intentionally break a simple code snippet and read the error."
+            },
+            {
+              name: "Practice Algorithms Visually",
+              why: "Data structures are hard to picture in your head.",
+              time: "⏱️ 1 hour",
+              resourceTitle: "VisuAlgo",
+              resourceUrl: "https://visualgo.net/en",
+              task: "Visualize how a basic sorting algorithm works."
+            }
+          ]
+        };
       }
+      
+      // Default fallback
+      return {
+        field: "Tech Journey",
+        steps: [
+          {
+            name: "Explore the Basics",
+            why: "Start building a foundation.",
+            time: "⏱️ 30 mins",
+            resourceTitle: "FreeCodeCamp",
+            resourceUrl: "https://www.freecodecamp.org/",
+            task: "Start the first module."
+          }
+        ]
+      };
     }
 
     function renderActiveStep() {
