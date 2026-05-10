@@ -1796,19 +1796,11 @@
 
   <script>
     /* ─── QUESTIONS ─── */
-<<<<<<< HEAD
     const baseQs = [
       {
         eye: "About you",
         title: "How new are you?",
         hint: "Tell us your level in tech.",
-=======
-    const Qs = [
-      {
-        eye: "About you",
-        title: "Where are you right now?",
-        hint: "Pick the closest one.",
->>>>>>> 21f0f3ae194fde6ddcfd238e48364ea492064a81
         opts: [
           { e: "🌱", l: "New beginner" },
           { e: "🔰", l: "Know a little" },
@@ -1818,13 +1810,8 @@
       },
       {
         eye: "Your interest",
-<<<<<<< HEAD
         title: "What do you want to learn?",
         hint: "Pick one main area.",
-=======
-        title: "What do you like?",
-        hint: "Choose one for now.",
->>>>>>> 21f0f3ae194fde6ddcfd238e48364ea492064a81
         opts: [
           { e: "🌐", l: "Websites" },
           { e: "🤖", l: "AI" },
@@ -1832,7 +1819,6 @@
           { e: "📱", l: "Mobile apps" },
           { e: "🔒", l: "Security" },
         ]
-<<<<<<< HEAD
       }
     ];
 
@@ -1916,8 +1902,6 @@
           { e: "🛠️", l: "Practice" },
           { e: "👥", l: "With help" },
         ]
-=======
->>>>>>> 21f0f3ae194fde6ddcfd238e48364ea492064a81
       },
       {
         eye: "Your time",
@@ -1943,15 +1927,12 @@
       }
     ];
 
-<<<<<<< HEAD
     function getQuestions() {
       const list = [...baseQs];
       if (ans[1] !== undefined) list.push(fieldQs[ans[1]] || fieldQs[0]);
       return [...list, ...personalQs];
     }
 
-=======
->>>>>>> 21f0f3ae194fde6ddcfd238e48364ea492064a81
     let step = 0, ans = {};
     let activePlan = null;
     const FEEDBACK_FORM_URL = 'https://forms.gle/XeGVcjPF7X5NdFFk6';
@@ -1962,18 +1943,11 @@
     }
 
     function renderQ(i) {
-<<<<<<< HEAD
       const questions = getQuestions();
       const q = questions[i];
       const pct = ((i + 1) / questions.length) * 100;
       document.getElementById('obFill').style.width = pct + '%';
       document.getElementById('obCount').textContent = (i + 1) + ' of ' + questions.length;
-=======
-      const q = Qs[i];
-      const pct = ((i + 1) / Qs.length) * 100;
-      document.getElementById('obFill').style.width = pct + '%';
-      document.getElementById('obCount').textContent = (i + 1) + ' of ' + Qs.length;
->>>>>>> 21f0f3ae194fde6ddcfd238e48364ea492064a81
       const cta = document.getElementById('obCta');
       cta.classList.remove('on');
 
@@ -1999,11 +1973,7 @@
 
     function nextQ() {
       step++;
-<<<<<<< HEAD
       if (step >= getQuestions().length) { buildResult(); return; }
-=======
-      if (step >= Qs.length) { buildResult(); return; }
->>>>>>> 21f0f3ae194fde6ddcfd238e48364ea492064a81
       renderQ(step);
     }
 
@@ -2013,11 +1983,7 @@
 
       const stage = ans[0] ?? 0;
       const interest = ans[1] ?? 0;
-<<<<<<< HEAD
       const time = ans[5] ?? 1;
-=======
-      const time = ans[2] ?? 1;
->>>>>>> 21f0f3ae194fde6ddcfd238e48364ea492064a81
 
       const fields = ['Web Development', 'AI / ML', 'Data Science', 'Mobile Apps', 'Cybersecurity'];
       const field = fields[interest];
@@ -2631,7 +2597,6 @@
           taskWhy: 'Safe practice. Simple start.',
         },
       };
-<<<<<<< HEAD
       const beginnerResources = {
         0: [
           { title: 'W3Schools HTML', desc: 'Very easy first HTML lessons.', url: 'https://www.w3schools.com/html/', type: 'Beginner', start: 'HTML Introduction', time: '20 min daily', action: 'Read one page. Try one example.' },
@@ -2660,9 +2625,6 @@
         return { ...selected, resources: beginnerResources[interest] || beginnerResources[0] };
       }
       return selected;
-=======
-      return paths[interest] || paths[0];
->>>>>>> 21f0f3ae194fde6ddcfd238e48364ea492064a81
     }
 
     function show(id) {
