@@ -740,58 +740,90 @@
       animation: riseUp .6s ease forwards .5s;
     }
 
-    .future-path-label {
-      font-size: 10px;
+    .future-path {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, .06);
+      border-radius: 20px;
+      padding: 32px;
+      margin-top: 32px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: riseUp .6s ease forwards .5s;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+    
+    .future-path-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 18px;
       font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: #999;
-      margin-bottom: 14px;
+      color: #111;
+      margin-bottom: 6px;
+    }
+    
+    .future-path-sub {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 24px;
+      line-height: 1.5;
     }
 
     .future-path-track {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0;
       align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none; /* Firefox */
     }
+    .future-path-track::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
     .future-path-node {
       display: flex;
       align-items: center;
       gap: 0;
+      flex-shrink: 0;
     }
 
     .future-path-pill {
       font-family: 'Sora', sans-serif;
       font-size: 12px;
       font-weight: 600;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 100px;
-      background: #f4f4f5;
-      color: #555;
-      transition: all .2s;
+      background: #f8f9fa;
+      color: #666;
+      border: 1px solid rgba(0,0,0,0.03);
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
       white-space: nowrap;
     }
 
     .future-path-pill.active-pill {
-      background: #eff6ff;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
       color: #2563eb;
       border: 1px solid #bfdbfe;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+      transform: scale(1.05);
     }
 
     .future-path-arrow {
-      color: #d1d5db;
+      color: #e5e7eb;
       font-size: 14px;
-      padding: 0 6px;
+      padding: 0 10px;
       flex-shrink: 0;
+      user-select: none;
     }
 
     .future-path-caption {
       font-size: 12px;
-      color: #aaa;
-      margin-top: 12px;
-      font-style: italic;
+      color: #999;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .future-path-caption::before {
+      content: '✨';
+      font-size: 14px;
     }
 
     .roadmap-preview {
@@ -1097,6 +1129,14 @@
       <!-- Momentum banner (shown after completing steps) -->
       <div class="momentum-banner" id="momentumBanner">⚡ You're building momentum.</div>
 
+      <!-- Future Path Visualization -->
+      <div class="future-path" id="futurePath">
+        <h3 class="future-path-title">Your Possible Growth Path</h3>
+        <p class="future-path-sub">Small consistent steps can create massive opportunities over time.</p>
+        <div class="future-path-track" id="futurePathTrack"></div>
+        <p class="future-path-caption">Your starting point unlocks each of these stages.</p>
+      </div>
+
       <!-- Active Step Card -->
       <div class="active-step-card" id="activeStepCard">
 
@@ -1147,14 +1187,7 @@
         </div>
       </div>
 
-      <!-- Future Path Visualization -->
-      <div class="future-path" id="futurePath">
-        <div class="future-path-label">Where this leads</div>
-        <div class="future-path-track" id="futurePathTrack">
-          <!-- Populated by JS -->
-        </div>
-        <p class="future-path-caption">Your starting point unlocks each of these stages.</p>
-      </div>
+
 
     </div>
   </section>
@@ -1279,6 +1312,7 @@
             { e: "📊", l: "Data Science", val: "data" },
             { e: "🔒", l: "Cyber Security", val: "cyber" },
             { e: "📱", l: "Mobile App Development", val: "mobile" },
+            { e: "🎨", l: "Product Design (UI/UX)", val: "design" },
             { e: "💼", l: "Freelancing & Online Earning", val: "freelance" },
             { e: "🏫", l: "University CS Subjects", val: "uni" }
           ]
@@ -1561,7 +1595,7 @@
       if (interest === 'ai') {
         return {
           field: "AI & Machine Learning",
-          futurePath: ["Curious Beginner", "Python Learner", "AI Builder", "ML Engineer", "AI Founder"],
+          futurePath: ["Beginner", "Python Basics", "Machine Learning", "AI Projects", "AI Engineer", "AI Founder"],
           steps: [
             {
               name: "Start with Python today — just the basics.",
@@ -1597,7 +1631,7 @@
       if (interest === 'web') {
         return {
           field: "Web Development",
-          futurePath: ["HTML Beginner", "CSS Stylist", "JS Developer", "Frontend Dev", "Full-Stack / Freelancer"],
+          futurePath: ["Beginner", "HTML/CSS", "JavaScript", "React Developer", "Freelance/Remote Opportunities"],
           steps: [
             {
               name: "Start with HTML today — structure first, perfection later.",
@@ -1633,7 +1667,7 @@
       if (interest === 'mobile') {
         return {
           field: "Mobile App Development",
-          futurePath: ["App Concept", "Framework Learner", "First App", "Play Store Publisher", "App Developer"],
+          futurePath: ["App Concept", "Framework Learner", "First App", "Play Store Publisher", "Senior App Dev"],
           steps: [
             {
               name: "Sketch your first app idea — on paper.",
@@ -1669,7 +1703,7 @@
       if (interest === 'cyber') {
         return {
           field: "Cyber Security",
-          futurePath: ["Curious Learner", "Networking Basics", "Linux User", "CTF Player", "Security Analyst"],
+          futurePath: ["Beginner", "Networking Basics", "Security Fundamentals", "Ethical Hacking", "Security Analyst"],
           steps: [
             {
               name: "Understand how networks actually work.",
@@ -1741,7 +1775,7 @@
       if (interest === 'freelance') {
         return {
           field: "Freelancing & Earning",
-          futurePath: ["Service Unclear", "Niche Defined", "First Profile", "First Client", "Consistent Income"],
+          futurePath: ["Service Unclear", "Niche Defined", "First Profile", "First Client", "Sustainable Freedom"],
           steps: [
             {
               name: "Get clear on exactly what you offer — one thing only.",
@@ -1769,6 +1803,42 @@
               resourceTitle: "Writing Winning Proposals",
               resourceUrl: "https://www.upwork.com/resources/how-to-write-a-cover-letter",
               task: "Find one job that matches your skill. Send a personalized proposal that references their specific problem."
+            }
+          ]
+        };
+      }
+
+      if (interest === 'design') {
+        return {
+          field: "Product Design (UI/UX)",
+          futurePath: ["Beginner", "UI Design", "Figma Projects", "UX Thinking", "Product Designer"],
+          steps: [
+            {
+              name: "Master the fundamentals of UI design — space, color, and type.",
+              why: "Design is not about 'making things pretty.' It is about clarity and usability.",
+              whyMatters: "Great design is invisible. When you understand the rules of hierarchy and balance, your work immediately looks professional.",
+              time: "⏱️ 45 mins",
+              resourceTitle: "UI Design Fundamentals",
+              resourceUrl: "https://www.interaction-design.org/literature/topics/ui-design",
+              task: "Find 3 websites you like. List exactly why they feel good to use. Is it the spacing? The colors? The fonts?"
+            },
+            {
+              name: "Learn Figma — the industry standard for modern design.",
+              why: "Figma is where design happens today. It is powerful, collaborative, and free for individuals.",
+              whyMatters: "Knowing the tool is just as important as knowing the theory. Figma proficiency is the first requirement for any design job.",
+              time: "⏱️ 1 hour",
+              resourceTitle: "Figma for Beginners",
+              resourceUrl: "https://www.figma.com/resource-library/design-basics/",
+              task: "Open Figma and create a simple 'Card' component with an image, a title, and a button."
+            },
+            {
+              name: "Think like a UX Designer — solve real problems.",
+              why: "A pretty UI is useless if the product is hard to use. UX is the bridge between art and utility.",
+              whyMatters: "Companies hire Product Designers because they solve business problems. UX thinking makes you a strategic partner, not just a decorator.",
+              time: "⏱️ 1.5 hours",
+              resourceTitle: "Google UX Design Course",
+              resourceUrl: "https://grow.google/certificates/ux-design/",
+              task: "Pick a simple app you use. Sketch one way you would make the main task (like 'posting a photo') even easier."
             }
           ]
         };
