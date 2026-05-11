@@ -100,8 +100,11 @@
       font-size: 18px;
       font-weight: 700;
       color: #111;
-      margin-bottom: 80px;
       letter-spacing: -0.3px;
+      position: fixed;
+      top: 24px;
+      left: 32px;
+      z-index: 100;
       opacity: 0;
       animation: riseUp .6s ease forwards .1s, floatGlow 4s ease-in-out infinite 1s;
     }
@@ -857,17 +860,22 @@
   <!-- ════ LANDING ════ -->
   <section class="screen active" id="s-land">
     <div class="land-inner">
-      <div class="land-logo">Your<b>Next</b></div>
-      <p class="land-tag">Smart guidance for overwhelmed tech students</p>
-      <h1 class="land-h1">Stop guessing.<br>Find your <i>next</i> step.</h1>
-      <p class="land-sub">Not another course platform. YourNext removes decision fatigue and gives you one clear direction for where you are right now.</p>
+      <div class="land-logo logo-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+        Your<b>Next</b>
+      </div>
+      <p class="land-tag">Clarity for confused tech students</p>
+      <h1 class="land-h1">No more guessing.<br>Just your <i>next clear step</i>.</h1>
+      <p class="land-sub">YourNext understands where you're stuck and guides you step-by-step without overwhelm.</p>
       <div class="cta-outer">
         <button class="cta" onclick="goOb()">
           <div class="cta-fill"></div>
           <span>Find My Path</span>
           <div class="cta-arrow">→</div>
         </button>
-        <p class="cta-whisper">60 seconds · no signup · completely free</p>
+        <p class="cta-whisper">2 minutes · no signup · completely free</p>
       </div>
     </div>
   </section>
@@ -876,7 +884,12 @@
   <section class="screen" id="s-ob">
     <div class="ob">
       <div class="ob-top">
-        <div class="ob-logo-sm">Your<b>Next</b></div>
+        <div class="ob-logo-sm logo-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+          Your<b>Next</b>
+        </div>
         <div class="ob-bar">
           <div class="ob-fill" id="obFill" style="width:25%"></div>
         </div>
@@ -887,11 +900,23 @@
     </div>
   </section>
 
-    <!-- ════ RESULT ════ -->
+  <!-- ════ RESULT ════ -->
   <section class="screen" id="s-res">
+
+    <!-- Fixed glassmorphism navbar -->
+    <nav class="res-nav">
+      <button class="nav-logo" onclick="restart()" aria-label="Go home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+        Your<b>Next</b>
+      </button>
+      <span class="nav-label">Your Roadmap</span>
+    </nav>
+
     <div class="roadmap-top">
-      <h2 class="roadmap-h" id="resH">Let's start your <span id="resField">Web Development</span> journey.</h2>
-      <p class="roadmap-sub">Don't worry. Focus on one step at a time.</p>
+      <h2 class="roadmap-h" id="resH">Your <span id="resField">Web Development</span> path.</h2>
+      <p class="roadmap-sub">Focus on one step at a time. That's all it takes.</p>
     </div>
 
     <div class="roadmap-container">
@@ -913,14 +938,14 @@
           <div class="practice-task" id="stepTask"></div>
         </div>
 
-        <button class="complete-btn" onclick="completeCurrentStep()">Yes, I completed this</button>
+        <button class="complete-btn" onclick="completeCurrentStep()">✓ Yes, I completed this</button>
       </div>
       
       <div class="finished-card" id="finishedCard">
         <div class="finished-icon">🎉</div>
-        <div class="finished-title">You did it!</div>
-        <p class="step-why">You have completed all the steps for this stage. You are building real momentum.</p>
-        <button class="restart" style="opacity:1; animation:none; margin-top: 24px;" onclick="restart()">Start over</button>
+        <div class="finished-title">Great job. You're moving forward.</div>
+        <p class="step-why">You now have more clarity than most beginners. Keep building this momentum — one step at a time.</p>
+        <button class="complete-btn" style="margin-top: 24px; width: auto; padding: 14px 32px;" onclick="restart()">Start a new path →</button>
       </div>
 
       <div class="roadmap-preview" id="roadmapPreview">
