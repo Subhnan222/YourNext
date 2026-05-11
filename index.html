@@ -1595,34 +1595,70 @@
       if (interest === 'ai') {
         return {
           field: "AI & Machine Learning",
-          futurePath: ["Beginner", "Python Basics", "Machine Learning", "AI Projects", "AI Engineer", "AI Founder"],
+          futurePath: ["Computer Basics", "Python Basics", "Mini Projects", "AI Concepts", "Prompting", "API Connect", "AI Builder"],
           steps: [
             {
-              name: "Start with Python today — just the basics.",
-              why: "You don't need to know everything. Just write and run your first few lines.",
-              whyMatters: "Python is the native language of AI. Without it, every other AI concept will stay theoretical. One hour a day changes everything.",
-              time: "⏱️ 30 mins/day",
-              resourceTitle: "Kaggle Python Course (free)",
+              name: "Get comfortable with how computers think.",
+              why: "Before writing AI code, you need to understand the simple logic computers use to solve problems.",
+              whyMatters: "Most people skip this and feel lost later. Understanding files, the terminal, and logic gates makes you a 'natural' at everything else.",
+              time: "⏱️ 30 mins",
+              resourceTitle: "Harvard CS50 - Week 0",
+              resourceUrl: "https://cs50.harvard.edu/x/2024/weeks/0/",
+              task: "Watch the first 20 minutes of CS50. Just notice how complex problems are broken into small, simple steps."
+            },
+            {
+              name: "Start with Python — the native language of AI.",
+              why: "Python is readable, friendly, and used by every major AI company in the world.",
+              whyMatters: "You don't need to be a math genius. Python reads almost like English. Once you can write 5 lines of code, you're officially a programmer.",
+              time: "⏱️ 45 mins",
+              resourceTitle: "Kaggle Python for Beginners",
               resourceUrl: "https://www.kaggle.com/learn/python",
-              task: "Write a Python script that prints your name and your goal 3 times using a loop."
+              task: "Create a variable with your name and print it. If it shows up on the screen, you've just successfully communicated with a machine."
             },
             {
-              name: "Learn to talk to AI — Prompt Engineering.",
-              why: "Before building AI apps, learn how to communicate with models effectively.",
-              whyMatters: "Prompt engineering is the fastest way to get real AI results without deep coding. Companies pay for this skill right now.",
+              name: "Build a tiny project that actually works.",
+              why: "The best way to learn is by making something. A simple calculator or guessing game builds real confidence.",
+              whyMatters: "Small wins create big momentum. When you build a tool that solves a problem (even a tiny one), you realize: 'I can actually do this.'",
               time: "⏱️ 1 hour",
-              resourceTitle: "OpenAI Prompt Engineering Guide",
-              resourceUrl: "https://platform.openai.com/docs/guides/prompt-engineering",
-              task: "Write 3 different prompts for the same task and compare the outputs. Notice what changes."
+              resourceTitle: "Tiny Python Projects",
+              resourceUrl: "https://www.freecodecamp.org/news/python-projects-for-beginners/",
+              task: "Build a 'Number Guessing Game' where the computer picks a number and you try to guess it. It's only 10 lines of code!"
             },
             {
-              name: "Connect to a real AI API and build something.",
-              why: "This is the moment you stop consuming and start creating.",
-              whyMatters: "Calling an API turns you from a learner into a builder. Most people never reach this step — you will.",
-              time: "⏱️ 2 hours",
-              resourceTitle: "OpenAI Quickstart",
+              name: "Demystify AI — Input, Output, and Patterns.",
+              why: "AI isn't magic. It's a system that looks for patterns in data to predict the next best answer.",
+              whyMatters: "Removing the 'mystery' makes AI less intimidating. When you understand that it's just advanced pattern matching, you can use it better.",
+              time: "⏱️ 30 mins",
+              resourceTitle: "How AI Works (Simple Guide)",
+              resourceUrl: "https://www.youtube.com/watch?v=2ePf9rue1Ao",
+              task: "Explain to a friend (or a rubber duck) what a 'model' is in your own words. If you can explain it, you own it."
+            },
+            {
+              name: "Send your first prompt to AI — an emotional milestone.",
+              why: "Before building AI apps, you need to master the art of 'Prompt Engineering.'",
+              whyMatters: "You are now talking to a digital brain. Learning how to ask the right questions is a superpower. You just made AI respond for the first time!",
+              time: "⏱️ 45 mins",
+              resourceTitle: "OpenAI Prompting Guide",
+              resourceUrl: "https://platform.openai.com/docs/guides/prompt-engineering",
+              task: "Ask ChatGPT to explain a complex topic using only emojis. Notice how changing your prompt changes the AI's 'personality'."
+            },
+            {
+              name: "Link your code to a real brain (AI API).",
+              why: "This is where you move from using a website to building your own custom AI tools.",
+              whyMatters: "Connecting an API is the bridge to the professional world. Most beginners never reach this stage — you are now building real AI software.",
+              time: "⏱️ 1.5 hours",
+              resourceTitle: "OpenAI API Quickstart",
               resourceUrl: "https://platform.openai.com/docs/quickstart",
-              task: "Build a tiny chatbot that responds to any question you type. Just 15 lines of Python."
+              task: "Get an API key and send a simple 'Hello' request from your Python script. When the AI replies to your code, you've arrived."
+            },
+            {
+              name: "Create your first AI-powered tool.",
+              why: "Combine your Python skills with the AI's brain to build something unique.",
+              whyMatters: "You aren't just learning anymore — you are a creator. Whether it's a personalized study assistant or a joke generator, you've built something real.",
+              time: "⏱️ 2 hours",
+              resourceTitle: "Build a Simple AI Chatbot",
+              resourceUrl: "https://realpython.com/build-a-chatbot-python-openai/",
+              task: "Build a 'Mentor Bot' that takes any problem you have and gives you one encouraging step to solve it. You are now an AI Builder."
             }
           ]
         };
