@@ -1775,38 +1775,84 @@
       if (interest === 'data') {
         return {
           field: "Data Science",
-          futurePath: ["Data Curious", "Python + Pandas", "Data Analyst", "ML Practitioner", "Data Scientist"],
+          futurePath: ["Data Concepts", "Spreadsheets", "Organizing", "Python Script", "Python Basics", "Pandas", "Insights", "Data Builder"],
           steps: [
             {
-              name: "Write your first Python script — no experience needed.",
-              why: "Python is the tool every data scientist uses daily. Start simple and build up.",
-              whyMatters: "You don't need to be a programmer to work with data. But learning Python basics now will multiply everything you do later.",
-              time: "⏱️ 1 hour",
-              resourceTitle: "Kaggle Python (free + beginner-friendly)",
-              resourceUrl: "https://www.kaggle.com/learn/python",
-              task: "Write a script that creates a list of 5 numbers and prints the average. Keep it simple."
+              name: "Understand what data actually is — The Pattern Hunter.",
+              why: "Data isn't just numbers; it's information about the world. Every pattern you find tells a story.",
+              whyMatters: "Most people jump into tools. But the best data scientists are the ones who can see the 'why' behind the numbers. You're training your brain to spot patterns.",
+              time: "⏱️ 30 mins",
+              resourceTitle: "What is Data Science? (Beginner Guide)",
+              resourceUrl: "https://www.youtube.com/watch?v=X3paOmcrTjQ",
+              task: "Look at your last 5 bank transactions or your last 5 phone apps used. What 'story' do those 5 data points tell about your day?"
             },
             {
-              name: "Explore data in spreadsheets before you code.",
-              why: "Google Sheets teaches data thinking without the intimidation of code.",
-              whyMatters: "Data intuition — knowing what questions to ask — is more valuable than knowing which function to use. Spreadsheets build that intuition fast.",
+              name: "Explore data visually in spreadsheets.",
+              why: "Spreadsheets are the perfect starting point because you can actually SEE the data you're working with.",
+              whyMatters: "Building visual intuition for tables, rows, and columns now makes coding much easier later. You'll learn sorting and filtering in a way that just clicks.",
               time: "⏱️ 45 mins",
-              resourceTitle: "Google Data Analytics Certificate",
-              resourceUrl: "https://grow.google/certificates/data-analytics/",
-              task: "Download a free dataset and create one chart that tells a story about the data."
+              resourceTitle: "Google Sheets for Beginners",
+              resourceUrl: "https://workspace.google.com/products/sheets/",
+              task: "Create a sheet with 5 of your favorite movies, their year, and their rating. Sort them by year. You've just performed data organization."
             },
             {
-              name: "Use Pandas to work with real data in Python.",
-              why: "Pandas is how every data professional reads, cleans, and explores datasets.",
-              whyMatters: "This is your first professional-level data skill. Loading a CSV and exploring it puts you ahead of most beginners.",
+              name: "Organize simple datasets like a pro.",
+              why: "Clean data is the secret to great insights. Learn how to structure information so a computer can read it.",
+              whyMatters: "If your data is messy, your results will be wrong. Learning how to organize information into clean rows and columns is 80% of the job.",
+              time: "⏱️ 30 mins",
+              resourceTitle: "Data Cleaning Basics",
+              resourceUrl: "https://www.tableau.com/learn/articles/what-is-data-cleaning",
+              task: "Take your movie list and make sure every 'Rating' column has the same format (e.g., 8/10). No missing values allowed!"
+            },
+            {
+              name: "Write your first Python script — The Transition.",
+              why: "Python helps you automate your analysis. It's like having a spreadsheet that can think for itself.",
+              whyMatters: "Don't be intimidated by 'code.' It's just a way to talk to the computer. Python is the world's most popular language for data for a reason.",
+              time: "⏱️ 45 mins",
+              resourceTitle: "Python for Data Science (Kaggle)",
+              resourceUrl: "https://www.kaggle.com/learn/python",
+              task: "Write a 1-line script: print('My first data script is running!'). If you see that text, you've just unlocked automation."
+            },
+            {
+              name: "Learn Python Basics for automation.",
+              why: "Master the simple tools that let you handle thousands of data points in seconds.",
+              whyMatters: "Variables and loops are like the 'copy-paste' of the coding world, but much faster. You're building the foundation for real power.",
+              time: "⏱️ 1 hour",
+              resourceTitle: "Variables and Lists in Python",
+              resourceUrl: "https://www.w3schools.com/python/python_variables.asp",
+              task: "Create a list in Python of 5 numbers and find the average. You're doing math at the speed of light."
+            },
+            {
+              name: "Use Pandas to explore and clean real datasets.",
+              why: "Pandas gives you 'spreadsheet superpowers' inside your code. It's the #1 tool for data scientists.",
+              whyMatters: "Handling 1,000,000 rows in a spreadsheet is impossible. Doing it in Pandas takes one second. This is where you become truly professional.",
               time: "⏱️ 1.5 hours",
-              resourceTitle: "Kaggle Pandas Course (free)",
-              resourceUrl: "https://www.kaggle.com/learn/pandas",
-              task: "Load a CSV file, check for missing values, and print the top 5 rows. Three lines of code."
+              resourceTitle: "Pandas Quickstart Guide",
+              resourceUrl: "https://pandas.pydata.org/docs/getting_started/index.html",
+              task: "Load a small CSV file (like a list of cities) into Python using Pandas and print the first 5 rows."
+            },
+            {
+              name: "Create charts and find real insights.",
+              why: "People don't want to see numbers; they want to see the story. Charts make your data come alive.",
+              whyMatters: "A great chart can change a business decision. You're learning how to turn raw numbers into clear, visual proof.",
+              time: "⏱️ 1 hour",
+              resourceTitle: "Data Visualization for Beginners",
+              resourceUrl: "https://www.kaggle.com/learn/data-visualization",
+              task: "Create a simple bar chart of your movie ratings list. Seeing the 'highest' bar is your first visual insight."
+            },
+            {
+              name: "Build your first mini data project.",
+              why: "Put everything together. Take a raw dataset and tell its story from start to finish.",
+              whyMatters: "Building a project from scratch proves you aren't just 'learning' — you're performing. You now have a real data skill you can show the world.",
+              time: "⏱️ 2 hours",
+              resourceTitle: "Beginner Data Project Ideas",
+              resourceUrl: "https://www.freecodecamp.org/news/data-science-project-ideas/",
+              task: "Find a dataset about something you love (sports, music, weather) and find the 'top 3' most common items in it."
             }
           ]
         };
       }
+
 
       if (interest === 'freelance') {
         return {
