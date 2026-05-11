@@ -899,12 +899,12 @@
 
     @media (max-width: 768px) {
       /* Landing */
-      #s-land { padding: 80px 20px 40px; }
-      .land-logo { left: 24px; top: 20px; font-size: 16px; }
+      #s-land { padding: 80px 12px 40px; }
+      .land-logo { left: 16px; top: 20px; font-size: 16px; }
       .cta { width: 100%; justify-content: center; padding: 18px 24px; font-size: 16px; }
       
       /* Onboarding */
-      #s-ob { padding: 20px; align-items: stretch; }
+      #s-ob { padding: 20px 12px; align-items: stretch; }
       .ob { max-width: 100%; margin: auto 0; }
       .ob-title { font-size: 24px; line-height: 1.2; }
       .ob-opt { padding: 18px 16px; font-size: 15px; }
@@ -914,18 +914,20 @@
       .ob-back { opacity: 0.5; border-color: rgba(255,255,255,0.05); }
 
       /* Roadmap Result */
-      .res-nav { padding: 0 16px; height: 60px; }
-      .roadmap-top { padding: 84px 20px 20px; text-align: left; }
-      .roadmap-h { font-size: 20px; letter-spacing: -0.3px; line-height: 1.3; }
-      .roadmap-container { padding: 0 16px 100px; }
-      .active-step-card { padding: 24px 20px; border-radius: 20px; border: none; box-shadow: 0 8px 32px rgba(0,0,0,0.05); }
-      .step-name { font-size: 19px; line-height: 1.4; }
+      .res-nav { padding: 0 12px; height: 60px; }
+      #s-res { padding: 24px 12px 100px; align-items: stretch; }
+      .roadmap-top { padding: 60px 12px 16px; text-align: left; }
+      .roadmap-h { font-size: 19px; letter-spacing: -0.2px; line-height: 1.3; margin-bottom: 8px; }
+      .roadmap-sub { font-size: 14px; }
+      .roadmap-container { width: 100%; max-width: 100%; padding: 0; gap: 20px; }
+      .active-step-card { padding: 24px 16px; border-radius: 16px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+      .step-name { font-size: 18px; line-height: 1.4; }
       .complete-btn, .resource-btn { padding: 18px; font-size: 16px; border-radius: 14px; }
-      .future-path { padding: 24px 20px; border-radius: 16px; }
+      .future-path { padding: 24px 16px; border-radius: 16px; margin-top: 0; }
       .roadmap-preview { display: none; } /* Focus on ONE active step on mobile */
       
-      .finished-card { padding: 48px 24px; border-radius: 20px; }
-      .finished-title { font-size: 22px; }
+      .finished-card { padding: 48px 16px; border-radius: 20px; }
+      .finished-title { font-size: 20px; }
     }
 
     @media (max-width: 360px) {
