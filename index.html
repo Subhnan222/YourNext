@@ -127,10 +127,10 @@
 
     .land-h1 {
       font-family: 'Sora', sans-serif;
-      font-size: clamp(40px, 7vw, 72px);
+      font-size: clamp(32px, 9vw, 72px);
       font-weight: 800;
       line-height: 1.04;
-      letter-spacing: -3px;
+      letter-spacing: -2px;
       color: #0a0a0a;
       max-width: 640px;
       margin: 0 auto 20px;
@@ -144,12 +144,12 @@
     }
 
     .land-sub {
-      font-size: 16px;
+      font-size: clamp(14px, 4vw, 16px);
       color: #777;
       font-weight: 300;
-      line-height: 1.7;
-      max-width: 360px;
-      margin: 0 auto 56px;
+      line-height: 1.6;
+      max-width: 420px;
+      margin: 0 auto 48px;
       opacity: 0;
       animation: riseUp .7s ease forwards .5s;
     }
@@ -906,13 +906,41 @@
       margin-bottom: 12px;
     }
 
-    @media (max-width: 600px) {
-      .active-step-card {
-        padding: 32px 20px;
-      }
-      .roadmap-h {
-        font-size: 24px;
-      }
+    @media (max-width: 768px) {
+      /* Landing */
+      #s-land { padding: 80px 20px 40px; }
+      .land-logo { left: 24px; top: 20px; font-size: 16px; }
+      .cta { width: 100%; justify-content: center; padding: 18px 24px; font-size: 16px; }
+      
+      /* Onboarding */
+      #s-ob { padding: 20px; align-items: stretch; }
+      .ob { max-width: 100%; margin: auto 0; }
+      .ob-title { font-size: 24px; line-height: 1.2; }
+      .ob-opt { padding: 18px 16px; font-size: 15px; }
+      .ob-ico { width: 42px; height: 42px; font-size: 20px; }
+      .ob-actions { flex-direction: column-reverse; gap: 12px; margin-top: 32px; }
+      .ob-actions button { width: 100% !important; height: 60px; font-size: 16px; border-radius: 16px; }
+      .ob-back { opacity: 0.5; border-color: rgba(255,255,255,0.05); }
+
+      /* Roadmap Result */
+      .res-nav { padding: 0 16px; height: 60px; }
+      .roadmap-top { padding: 84px 20px 20px; text-align: left; }
+      .roadmap-h { font-size: 20px; letter-spacing: -0.3px; line-height: 1.3; }
+      .roadmap-container { padding: 0 16px 100px; }
+      .active-step-card { padding: 24px 20px; border-radius: 20px; border: none; box-shadow: 0 8px 32px rgba(0,0,0,0.05); }
+      .step-name { font-size: 19px; line-height: 1.4; }
+      .complete-btn, .resource-btn { padding: 18px; font-size: 16px; border-radius: 14px; }
+      .future-path { padding: 24px 20px; border-radius: 16px; }
+      .roadmap-preview { display: none; } /* Focus on ONE active step on mobile */
+      
+      .finished-card { padding: 48px 24px; border-radius: 20px; }
+      .finished-title { font-size: 22px; }
+    }
+
+    @media (max-width: 360px) {
+      .land-h1 { font-size: 28px; }
+      .ob-title { font-size: 20px; }
+      .step-name { font-size: 17px; }
     }
 
     .feedback-modal {
@@ -1059,6 +1087,19 @@
       color: #888;
       letter-spacing: 0.5px;
       text-transform: uppercase;
+    }
+
+    /* Tactile Mobile Feedback */
+    @media (pointer: coarse) {
+      .cta:active, .ob-opt:active, .complete-btn:active, .resource-btn:active, .nav-logo:active {
+        transform: scale(0.96) !important;
+        opacity: 0.8;
+      }
+      
+      .cta, .ob-opt, .complete-btn, .resource-btn, .nav-logo, .ob-back {
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+      }
     }
 
   </style>
